@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tXr-a1-R10">
+            <objects>
+                <viewController id="BV1-FR-VrT" customClass="ViewController" customModule="ARTextExample" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="oNf-Ru-tcq">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <sceneKitView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lPo-xD-xtN" customClass="ARSCNView">
+                                <rect key="frame" x="-0.5" y="10" width="375" height="667"/>
+                            </sceneKitView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Dtt-gn-213">
+                                <rect key="frame" x="20" y="30" width="335" height="627"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                <connections>
+                                    <action selector="didChangeTextField:" destination="BV1-FR-VrT" eventType="editingChanged" id="aGh-Oq-dRg"/>
+                                </connections>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="lPo-xD-xtN" firstAttribute="centerY" secondItem="kuL-0Q-lke" secondAttribute="centerY" id="2AL-Q6-AaW"/>
+                            <constraint firstItem="Dtt-gn-213" firstAttribute="centerY" secondItem="lPo-xD-xtN" secondAttribute="centerY" id="KG1-AM-KzC"/>
+                            <constraint firstItem="lPo-xD-xtN" firstAttribute="height" secondItem="oNf-Ru-tcq" secondAttribute="height" id="MM7-br-WxA"/>
+                            <constraint firstItem="Dtt-gn-213" firstAttribute="height" secondItem="lPo-xD-xtN" secondAttribute="height" constant="-40" id="avQ-sh-ltI"/>
+                            <constraint firstItem="Dtt-gn-213" firstAttribute="centerX" secondItem="lPo-xD-xtN" secondAttribute="centerX" id="l4U-C9-K7z"/>
+                            <constraint firstItem="Dtt-gn-213" firstAttribute="width" secondItem="lPo-xD-xtN" secondAttribute="width" constant="-40" id="p8W-Xw-a5B"/>
+                            <constraint firstItem="lPo-xD-xtN" firstAttribute="centerX" secondItem="kuL-0Q-lke" secondAttribute="centerX" id="y02-ET-8ER"/>
+                            <constraint firstItem="lPo-xD-xtN" firstAttribute="width" secondItem="oNf-Ru-tcq" secondAttribute="width" id="zk6-5f-k4m"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="kuL-0Q-lke"/>
+                    </view>
+                    <connections>
+                        <outlet property="sceneView" destination="lPo-xD-xtN" id="yVs-fs-h9J"/>
+                        <outlet property="textField" destination="Dtt-gn-213" id="99O-X1-B6k"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+</document>
