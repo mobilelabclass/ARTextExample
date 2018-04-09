@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,10 +19,10 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <sceneKitView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lPo-xD-xtN" customClass="ARSCNView">
-                                <rect key="frame" x="-0.5" y="10" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </sceneKitView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Dtt-gn-213">
-                                <rect key="frame" x="20" y="30" width="335" height="627"/>
+                                <rect key="frame" x="20" y="20" width="335" height="627"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
@@ -30,17 +30,32 @@
                                     <action selector="didChangeTextField:" destination="BV1-FR-VrT" eventType="editingChanged" id="aGh-Oq-dRg"/>
                                 </connections>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sAo-Qi-Dud">
+                                <rect key="frame" x="112" y="617" width="150" height="30"/>
+                                <color key="backgroundColor" red="0.87843137250000003" green="0.2274509804" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="xXE-fe-n83"/>
+                                </constraints>
+                                <state key="normal" title="Start Recording">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="handleRecordButton:" destination="BV1-FR-VrT" eventType="touchUpInside" id="5lL-Sp-JbB"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="lPo-xD-xtN" firstAttribute="centerY" secondItem="kuL-0Q-lke" secondAttribute="centerY" id="2AL-Q6-AaW"/>
+                            <constraint firstItem="kuL-0Q-lke" firstAttribute="bottom" secondItem="sAo-Qi-Dud" secondAttribute="bottom" constant="20" id="7ER-aN-WA8"/>
+                            <constraint firstItem="kuL-0Q-lke" firstAttribute="trailing" secondItem="lPo-xD-xtN" secondAttribute="trailing" id="8GA-uf-FQA"/>
                             <constraint firstItem="Dtt-gn-213" firstAttribute="centerY" secondItem="lPo-xD-xtN" secondAttribute="centerY" id="KG1-AM-KzC"/>
-                            <constraint firstItem="lPo-xD-xtN" firstAttribute="height" secondItem="oNf-Ru-tcq" secondAttribute="height" id="MM7-br-WxA"/>
                             <constraint firstItem="Dtt-gn-213" firstAttribute="height" secondItem="lPo-xD-xtN" secondAttribute="height" constant="-40" id="avQ-sh-ltI"/>
+                            <constraint firstItem="lPo-xD-xtN" firstAttribute="leading" secondItem="oNf-Ru-tcq" secondAttribute="leading" id="bB0-te-6yp"/>
+                            <constraint firstItem="lPo-xD-xtN" firstAttribute="top" secondItem="oNf-Ru-tcq" secondAttribute="top" id="jet-54-vMK"/>
                             <constraint firstItem="Dtt-gn-213" firstAttribute="centerX" secondItem="lPo-xD-xtN" secondAttribute="centerX" id="l4U-C9-K7z"/>
                             <constraint firstItem="Dtt-gn-213" firstAttribute="width" secondItem="lPo-xD-xtN" secondAttribute="width" constant="-40" id="p8W-Xw-a5B"/>
-                            <constraint firstItem="lPo-xD-xtN" firstAttribute="centerX" secondItem="kuL-0Q-lke" secondAttribute="centerX" id="y02-ET-8ER"/>
-                            <constraint firstItem="lPo-xD-xtN" firstAttribute="width" secondItem="oNf-Ru-tcq" secondAttribute="width" id="zk6-5f-k4m"/>
+                            <constraint firstAttribute="bottom" secondItem="lPo-xD-xtN" secondAttribute="bottom" id="rpR-Sc-rrw"/>
+                            <constraint firstItem="sAo-Qi-Dud" firstAttribute="centerX" secondItem="oNf-Ru-tcq" secondAttribute="centerX" id="uG0-GC-yno"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="kuL-0Q-lke"/>
                     </view>

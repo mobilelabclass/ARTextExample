@@ -9,12 +9,18 @@
 import UIKit
 import SceneKit
 import ARKit
+import Photos
+import SceneKitVideoRecorder
 
 class ViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate {
     
     @IBOutlet weak var sceneView: ARSCNView!
     
     @IBOutlet weak var textField: UITextField!
+    
+    // Scene recorder.
+    var recorder: SceneKitVideoRecorder?
+    var isRecording = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +38,10 @@ class ViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate {
         sceneView.scene = scene
         
         textField.delegate = self
-    }
+        
+        // Setup recorder.
+        recorder = try! SceneKitVideoRecorder(withARSCNView: sceneView)
+            }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -109,6 +118,48 @@ class ViewController: UIViewController, UITextFieldDelegate, ARSCNViewDelegate {
 
         sceneView.scene.rootNode.addChildNode(textNode)
     }
+    
+    @IBAction func handleRecordButton(_ sender: UIButton) {
+        // Toggle start/stop recording.
+        isRecording = !isRecording
+        
+        if isRecording {
+            sender.setTitle("Stop Recording", for: .normal)
+            self.recorder?.startWriting().onSuccess {
+                print("Recording Started")
+            }
+        } else {
+            sender.setTitle("Start Recording", for: .normal)
+            self.recorder?.finishWriting().onSuccess { [weak self] url in
+                print("Recording Finished", url)
+                self?.checkAuthorizationAndPresentActivityController(toShare: url, using: self!)
+            }
+        }
+    }
+    
+    private func checkAuthorizationAndPresentActivityController(toShare data: Any, using presenter: UIViewController) {
+        switch PHPhotoLibrary.authorizationStatus() {
+        case .authorized:
+            let activityViewController = UIActivityViewController(activityItems: [data], applicationActivities: nil)
+            activityViewController.excludedActivityTypes = [UIActivityType.addToReadingList, UIActivityType.openInIBooks, UIActivityType.print]
+            presenter.present(activityViewController, animated: true, completion: nil)
+        case .restricted, .denied:
+            let libraryRestrictedAlert = UIAlertController(title: "Photos access denied",
+                                                           message: "Please enable Photos access for this application in Settings > Privacy to allow saving screenshots.",
+                                                           preferredStyle: UIAlertControllerStyle.alert)
+            libraryRestrictedAlert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+            presenter.present(libraryRestrictedAlert, animated: true, completion: nil)
+        case .notDetermined:
+            PHPhotoLibrary.requestAuthorization({ (authorizationStatus) in
+                if authorizationStatus == .authorized {
+                    let activityViewController = UIActivityViewController(activityItems: [data], applicationActivities: nil)
+                    activityViewController.excludedActivityTypes = [UIActivityType.addToReadingList, UIActivityType.openInIBooks, UIActivityType.print]
+                    presenter.present(activityViewController, animated: true, completion: nil)
+                }
+            })
+        }
+    }
+    
     
     // MARK: - ARSCNViewDelegate
     
